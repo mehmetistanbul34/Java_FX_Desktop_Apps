@@ -44,7 +44,7 @@ public class MainController {
 
 		Stage stage2 = new Stage();
 		Parent parent = FXMLLoader.load(getClass().getResource("/view/RegisterUser.fxml"));
-		Scene scene = new Scene(parent, 920, 350);
+		Scene scene = new Scene(parent, 1050, 415);
 		stage2.setScene(scene);
 		stage2.setTitle("User Register Page");
 		stage2.show();

@@ -50,7 +50,7 @@ public class LoginController implements Initializable {
 
 			Stage stage = new Stage();
 			Parent parent = FXMLLoader.load(getClass().getResource("/view/Cargo.fxml"));
-			Scene scene = new Scene(parent, 930, 350);
+			Scene scene = new Scene(parent, 1125, 385);
 			stage.setScene(scene);
 			stage.setTitle("Teslimat Durum Ekranı");
 			stage.show();
@@ -59,10 +59,6 @@ public class LoginController implements Initializable {
 
 	@FXML
 	private void changePasswordButton() throws IOException {
-		//Users list = null;//getUserssList();
-
-		//if (list!=null) {
-			//SessionMapAdmin.addSession("userData",null);//list);
 			//Get Stage
 			Stage stageMain = (Stage) changePasswordBtn.getScene().getWindow();
 			//Close Stage
@@ -74,7 +70,6 @@ public class LoginController implements Initializable {
 			stage.setScene(scene);
 			stage.setTitle("Change Password User Page");
 			stage.show();
-		//}
 	}
 
 	@FXML
@@ -119,7 +114,7 @@ public class LoginController implements Initializable {
 			st = connection.createStatement();
 			rs = st.executeQuery(query);
 			if(rs.next()) {
-				users = new Users(rs.getInt("Id"),rs.getString("username"), rs.getString("name"), rs.getString("surname"), rs.getString("Password"));
+				users = new Users(rs.getInt("Id"),rs.getString("Name"),rs.getString("Surname"),rs.getString("Username"),rs.getString("Password"),rs.getDouble("Latitude"),rs.getDouble("Longitude"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

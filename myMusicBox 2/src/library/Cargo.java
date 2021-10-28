@@ -6,13 +6,17 @@ public class Cargo {
     private String customerName;
     private String customerAddress;
     private String usersId;
+    private Double latitude;
+    private Double longitude;
     private Boolean cargoStatus;
 
-    public Cargo(int id, String customerName, String customerAddress, String usersId, Boolean cargoStatus) {
+    public Cargo(Integer id, String customerName, String customerAddress, String usersId, Double latitude, Double longitude, Boolean cargoStatus) {
         this.id = id;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.usersId = usersId;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.cargoStatus = cargoStatus;
     }
 
@@ -46,6 +50,22 @@ public class Cargo {
 
     public void setUsersId(String usersId) {
         this.usersId = usersId;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
     public Boolean getCargoStatus() {

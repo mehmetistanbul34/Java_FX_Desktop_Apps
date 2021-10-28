@@ -40,6 +40,16 @@
                   <Font size="14.0" />
                </font>
             </Label>
+            <Label text="Latitude">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Longitude">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </VBox>
       <VBox layoutX="100.0" layoutY="22.0" prefHeight="130.0" prefWidth="129.0" spacing="10.0">
@@ -49,27 +59,32 @@
             <TextField fx:id="surnameField" />
             <TextField fx:id="usernameField" />
             <TextField fx:id="passwordField" />
+            <TextField fx:id="latitudeField" />
+            <TextField fx:id="longitudeField" />
+            <Button fx:id="mapBtn" mnemonicParsing="false" onAction="#setMapButton" prefHeight="30.0" prefWidth="129.0" text="Set Map" />
          </children>
       </VBox>
-      <HBox layoutX="26.0" layoutY="240.0" spacing="10.0">
+      <HBox layoutX="26.0" layoutY="320.0" spacing="10.0">
          <children>
             <Button fx:id="insertButton" mnemonicParsing="false" onAction="#insertButton" prefHeight="30.0" prefWidth="60.0" text="Insert" />
             <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updateButton" prefHeight="30.0" prefWidth="60.0" text="Update" />
             <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteButton" prefHeight="30.0" prefWidth="60.0" text="Delete" />
          </children>
       </HBox>
-      <HBox layoutX="26.0" layoutY="280.0" spacing="10.0">
+      <HBox layoutX="26.0" layoutY="360.0" spacing="10.0">
          <children>
             <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#loginButton" prefHeight="30.0" prefWidth="200.0" text="Back Login" />
          </children>
       </HBox>
-      <TableView fx:id="TableView" layoutX="238.0" layoutY="22.0" prefHeight="290.0" prefWidth="637.0">
+      <TableView fx:id="TableView" layoutX="268.0" layoutY="22.0" prefHeight="370.0" prefWidth="760.0">
          <columns>
             <TableColumn fx:id="idColumn" prefWidth="35.0" text="ID" />
             <TableColumn fx:id="nameColumn" prefWidth="120.0" text="Name" />
             <TableColumn fx:id="surnameColumn" prefWidth="120.0" text="Surname" />
             <TableColumn fx:id="usernameColumn" prefWidth="120.0" text="Username" />
             <TableColumn fx:id="passwordColumn" prefWidth="120.0" text="Password" />
+            <TableColumn fx:id="latitudeColumn" prefWidth="120.0" text="Latitude" />
+            <TableColumn fx:id="longitudeColumn" prefWidth="120.0" text="Longitude" />
          </columns>
       </TableView>
    </children>

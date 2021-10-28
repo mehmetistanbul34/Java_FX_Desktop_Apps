@@ -40,6 +40,12 @@ public class RegisterUserController implements Initializable {
     private TextField passwordField;
 
 	@FXML
+	private TextField latitudeField;
+
+	@FXML
+	private TextField longitudeField;
+
+	@FXML
 	private TableView<Users> TableView;
 
 	@FXML
@@ -58,11 +64,20 @@ public class RegisterUserController implements Initializable {
 	private TableColumn<Users, String> passwordColumn;
 
 	@FXML
+	private TableColumn<Users, String> latitudeColumn;
+
+	@FXML
+	private TableColumn<Users, String> longitudeColumn;
+
+	@FXML
 	private Button loginBtn;
+
+	@FXML
+	private Button mapBtn;
 
     @FXML
     private void insertButton() {
-    	String query = "insert into users values('"+idField.getText()+"','"+nameField.getText()+"','"+surnameField.getText()+"','"+usernameField.getText()+"','"+passwordField.getText()+"')";
+    	String query = "insert into users values('"+idField.getText()+"','"+nameField.getText()+"','"+surnameField.getText()+"','"+usernameField.getText()+"','"+passwordField.getText()+"','"+latitudeField.getText()+"','"+longitudeField.getText()+"')";
     	executeQuery(query);
 		showUsers();
     }
@@ -81,11 +96,27 @@ public class RegisterUserController implements Initializable {
 		stage2.setTitle("User Login Page");
 		stage2.show();
 	}
-    
-    
+
+
+
+	@FXML
+	private void setMapButton() throws IOException {
+		//Get Stage
+		Stage stageMain = (Stage) mapBtn.getScene().getWindow();
+		//Close Stage
+		stageMain.close();
+
+		Stage stage2 = new Stage();
+		Parent parent = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+		Scene scene = new Scene(parent, 435, 150);
+		stage2.setScene(scene);
+		stage2.setTitle("User Login Page");
+		stage2.show();
+	}
+
     @FXML 
     private void updateButton() {
-		String query = "UPDATE users SET name='"+nameField.getText()+"',surname='"+surnameField.getText()+"',username='"+usernameField.getText()+"',password='"+passwordField.getText()+"' WHERE ID='"+idField.getText()+"'";
+		String query = "UPDATE users SET name='"+nameField.getText()+"',surname='"+surnameField.getText()+"',username='"+usernameField.getText()+"',password='"+passwordField.getText()+"',latitude='"+latitudeField.getText()+"',longitude='"+longitudeField.getText()+"' WHERE ID='"+idField.getText()+"'";
 		executeQuery(query);
 		showUsers();
     }
@@ -136,7 +167,7 @@ public class RegisterUserController implements Initializable {
 			rs = st.executeQuery(query);
 			Users users;
 			while(rs.next()) {
-				users = new Users(rs.getInt("Id"),rs.getString("Name"),rs.getString("Surname"),rs.getString("Username"),rs.getString("Password"));
+				users = new Users(rs.getInt("Id"),rs.getString("Name"),rs.getString("Surname"),rs.getString("Username"),rs.getString("Password"),rs.getDouble("Latitude"),rs.getDouble("Longitude"));
 				booksList.add(users);
 				}
 		} catch (Exception e) {
@@ -149,11 +180,14 @@ public class RegisterUserController implements Initializable {
 	public void showUsers() {
 		ObservableList<Users> list = getUsersList();
 
+
+		idColumn.setCellValueFactory(new PropertyValueFactory<Users,Integer>("id"));;
 		nameColumn.setCellValueFactory(new PropertyValueFactory<Users,String>("name"));
 		surnameColumn.setCellValueFactory(new PropertyValueFactory<Users,String>("surname"));
 		usernameColumn.setCellValueFactory(new PropertyValueFactory<Users,String>("username"));
 		passwordColumn.setCellValueFactory(new PropertyValueFactory<Users,String>("password"));
-		idColumn.setCellValueFactory(new PropertyValueFactory<Users,Integer>("id"));;
+		latitudeColumn.setCellValueFactory(new PropertyValueFactory<Users,String>("latitude"));
+		longitudeColumn.setCellValueFactory(new PropertyValueFactory<Users,String>("longitude"));
 
 		TableView.setItems(list);
 	}

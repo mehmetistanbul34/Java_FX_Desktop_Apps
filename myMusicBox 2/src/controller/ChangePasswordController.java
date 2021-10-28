@@ -135,7 +135,7 @@ public class ChangePasswordController implements Initializable {
 			rs = st.executeQuery(query);
 			Users users;
 			while(rs.next()) {
-				users = new Users(rs.getInt("Id"),rs.getString("Name"),rs.getString("Surname"),rs.getString("Username"),rs.getString("Password"));
+				users = new Users(rs.getInt("Id"),rs.getString("Name"),rs.getString("Surname"),rs.getString("Username"),rs.getString("Password"),rs.getDouble("Latitude"),rs.getDouble("Longitude"));
 				booksList.add(users);
 				}
 		} catch (Exception e) {
@@ -158,7 +158,7 @@ public class ChangePasswordController implements Initializable {
 			rs = st.executeQuery(query);
 			Users users;
 			while(rs.next()) {
-				users = new Users(rs.getInt("Id"),rs.getString("Name"),rs.getString("Surname"),rs.getString("Username"),rs.getString("Password"));
+				users = new Users(rs.getInt("Id"),rs.getString("Name"),rs.getString("Surname"),rs.getString("Username"),rs.getString("Password"),rs.getDouble("Latitude"),rs.getDouble("Longitude"));
 				if (users.getId()==id)
 					booksList.add(users);
 			}

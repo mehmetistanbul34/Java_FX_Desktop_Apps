@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import library.Admin;
 import library.Cargo;
+import library.Users;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,6 +38,12 @@ public class CargoController implements Initializable {
     private TextField usersIdField;
 
 	@FXML
+	private TextField latitudeField;
+
+	@FXML
+	private TextField longitudeField;
+
+	@FXML
 	private CheckBox cargoStatusField;
 
     @FXML
@@ -58,6 +65,12 @@ public class CargoController implements Initializable {
 	private TableColumn<Cargo, Boolean> cargoStatusColumn;
 
 	@FXML
+	private TableColumn<Cargo, String> latitudeColumn;
+
+	@FXML
+	private TableColumn<Cargo, String> longitudeColumn;
+
+	@FXML
 	private Button loginBtn;
 
 	@FXML
@@ -65,23 +78,23 @@ public class CargoController implements Initializable {
 
     @FXML
     private void insertButton() {
-    	String query = "insert into cargo values('"+idField.getText()+"','"+customerNameField.getText()+"','"+customerAddressField.getText()+"','"+usersIdField.getText()+"','"+cargoStatusField.isSelected()+"')";
+    	String query = "insert into cargo values('"+idField.getText()+"','"+customerNameField.getText()+"','"+customerAddressField.getText()+"','"+usersIdField.getText()+"','"+latitudeField.getText()+"','"+longitudeField.getText()+"','"+cargoStatusField.isSelected()+"')";
     	executeQuery(query);
     	showUsers();
     }
 
 	@FXML
 	private void loginButton() throws IOException {
-    	//Get Stage
+		//Get Stage
 		Stage stageMain = (Stage) loginBtn.getScene().getWindow();
 		//Close Stage
 		stageMain.close();
 
 		Stage stage2 = new Stage();
-		Parent parent = FXMLLoader.load(getClass().getResource("/view/LoginAdmin.fxml"));
-		Scene scene = new Scene(parent, 300, 150);
+		Parent parent = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+		Scene scene = new Scene(parent, 435, 150);
 		stage2.setScene(scene);
-		stage2.setTitle("Login Admin Page");
+		stage2.setTitle("Login Sayfası");
 		stage2.show();
 	}
 
@@ -103,7 +116,7 @@ public class CargoController implements Initializable {
     
     @FXML 
     private void updateButton() {
-    String query = "UPDATE cargo SET customer_name='"+customerNameField.getText()+"',customer_address='"+customerAddressField.getText()+"',users_id='"+usersIdField.getText()+"',cargo_status='"+cargoStatusField.isSelected()+"' WHERE ID='"+idField.getText()+"'";
+    String query = "UPDATE cargo SET customer_name='"+customerNameField.getText()+"',customer_address='"+customerAddressField.getText()+"',users_id='"+usersIdField.getText()+"',latitude='"+latitudeField.getText()+"',longitude='"+longitudeField.getText()+"',cargo_status='"+cargoStatusField.isSelected()+"' WHERE ID='"+idField.getText()+"'";
     executeQuery(query);
 	showUsers();
     }
@@ -156,7 +169,7 @@ public class CargoController implements Initializable {
 			List<Cargo> cargos = new ArrayList<>();
 			Cargo cargo;
 			while(rs.next()) {
-				cargo = new Cargo(rs.getInt("Id"),rs.getString("customer_name"),rs.getString("customer_address"),rs.getString("users_id"),rs.getBoolean("cargo_status"));
+				cargo = new Cargo(rs.getInt("Id"),rs.getString("customer_name"),rs.getString("customer_address"),rs.getString("users_id"),rs.getDouble("Latitude"),rs.getDouble("Longitude"),rs.getBoolean("cargo_status"));
 					if (cargo.getUsersId().equals(String.valueOf(SessionMapUser.getSessionMap("userData").getId()))) {
 						cargos.add(cargo);
 					}
@@ -177,6 +190,8 @@ public class CargoController implements Initializable {
     	customerNameColumn.setCellValueFactory(new PropertyValueFactory<Cargo,String>("customerName"));
     	customerAddressColumn.setCellValueFactory(new PropertyValueFactory<Cargo,String>("customerAddress"));
     	usersIdColumn.setCellValueFactory(new PropertyValueFactory<Cargo,String>("usersId"));
+		latitudeColumn.setCellValueFactory(new PropertyValueFactory<Cargo,String>("latitude"));
+		longitudeColumn.setCellValueFactory(new PropertyValueFactory<Cargo,String>("longitude"));
 		cargoStatusColumn.setCellValueFactory(new PropertyValueFactory<Cargo,Boolean>("cargoStatus"));
 
 		TableView.setItems(list);

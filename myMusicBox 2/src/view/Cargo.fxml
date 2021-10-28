@@ -36,6 +36,16 @@
                   <Font size="14.0" />
                </font>
             </Label>
+            <Label text="Latitude">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Longitude">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
             <Label text="CargoStatus">
                <font>
                   <Font size="14.0" />
@@ -49,27 +59,31 @@
             <TextField fx:id="customerNameField" />
             <TextField fx:id="customerAddressField" />
             <TextField fx:id="usersIdField" />
+            <TextField fx:id="latitudeField" />
+            <TextField fx:id="longitudeField" />
             <CheckBox fx:id="cargoStatusField"/>
          </children>
       </VBox>
-      <HBox layoutX="26.0" layoutY="240.0" spacing="10.0">
+      <HBox layoutX="26.0" layoutY="280.0" spacing="10.0">
          <children>
             <Button fx:id="insertButton" mnemonicParsing="false" onAction="#insertButton" prefHeight="30.0" prefWidth="60.0" text="Insert" />
             <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updateButton" prefHeight="30.0" prefWidth="60.0" text="Update" />
             <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteButton" prefHeight="30.0" prefWidth="60.0" text="Delete" />
          </children>
       </HBox>
-      <HBox layoutX="26.0" layoutY="280.0" spacing="10.0">
+      <HBox layoutX="26.0" layoutY="330.0" spacing="10.0">
          <children>
             <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#loginButton" prefHeight="30.0" prefWidth="200.0" text="Back Login" />
          </children>
       </HBox>
-      <TableView fx:id="TableView" layoutX="338.0" layoutY="22.0" prefHeight="290.0" prefWidth="525.0">
+      <TableView fx:id="TableView" layoutX="330.0" layoutY="22.0" prefHeight="330.0" prefWidth="760.0">
          <columns>
             <TableColumn fx:id="idColumn" prefWidth="35.0" text="ID" />
             <TableColumn fx:id="customerNameColumn" prefWidth="120.0" text="Customer Name" />
             <TableColumn fx:id="customerAddressColumn" prefWidth="120.0" text="Customer Address" />
             <TableColumn fx:id="usersIdColumn" prefWidth="120.0" text="Users ID" />
+            <TableColumn fx:id="latitudeColumn" prefWidth="120.0" text="Latitude" />
+            <TableColumn fx:id="longitudeColumn" prefWidth="120.0" text="Longitude" />
             <TableColumn fx:id="cargoStatusColumn" prefWidth="120.0" text="Cargo Status" />
          </columns>
       </TableView>
